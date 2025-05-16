@@ -1,38 +1,47 @@
-name: Run Tests on DEV
+name: Automation: Dev
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+    inputs:
+      job:
+        description: 'Which job to run'
+        required: true
+        type: choice
+        options:
+          - buyer
+          - safari
+          - full-regression
 
 jobs:
-  smoke:
-    name: Smoke Tests
+  buyer:
+    name: [R] Buyer Tests
+    if: ${{ github.event.inputs.job == 'buyer' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Run smoke tests
-        run: echo "Running smoke tests on DEV config"
+      - name: Run Buyer Tests
+        run: echo "Running buyer tests with config.buyer.json"
 
-  integration:
-    name: Integration Tests
+  safari:
+    name: Safari Essential
+    if: ${{ github.event.inputs.job == 'safari' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Run integration tests
-        run: echo "Running integration tests on DEV config"
+      - name: Run Safari Tests
+        run: echo "Running safari tests with config.safari.json"
 
-  ui:
-    name: UI Tests
+  full-regression:
+    name: Full Regression 🔁
+    if: ${{ github.event.inputs.job == 'full-regression' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Run UI tests
-        run: echo "Running UI tests on DEV config"
+      - name: Run Full Regression
+        run: echo "Running full regression tests with config.full.json"
