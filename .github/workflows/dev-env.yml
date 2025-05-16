@@ -1,4 +1,4 @@
-name: "Automation: Dev"
+name: Automation Dev
 
 on:
   workflow_dispatch:
