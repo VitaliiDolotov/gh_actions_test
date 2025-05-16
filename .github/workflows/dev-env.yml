@@ -3,9 +3,10 @@ name: Automation: Dev
 on:
   workflow_dispatch:
     inputs:
-      job:
-        description: 'Which job to run'
+      target:
+        description: 'Select which test suite to run'
         required: true
+        default: full-regression
         type: choice
         options:
           - buyer
@@ -13,35 +14,32 @@ on:
           - full-regression
 
 jobs:
-  buyer:
-    name: [R] Buyer Tests
-    if: ${{ github.event.inputs.job == 'buyer' }}
+  run-buyer:
+    name: Buyer Tests
+    if: ${{ github.event.inputs.target == 'buyer' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Run Buyer Tests
+      - name: Run buyer tests
         run: echo "Running buyer tests with config.buyer.json"
 
-  safari:
-    name: Safari Essential
-    if: ${{ github.event.inputs.job == 'safari' }}
+  run-safari:
+    name: Safari Tests
+    if: ${{ github.event.inputs.target == 'safari' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Run Safari Tests
+      - name: Run safari tests
         run: echo "Running safari tests with config.safari.json"
 
-  full-regression:
-    name: Full Regression 🔁
-    if: ${{ github.event.inputs.job == 'full-regression' }}
+  run-full:
+    name: Full Regression
+    if: ${{ github.event.inputs.target == 'full-regression' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Run Full Regression
+      - name: Run full regression tests
         run: echo "Running full regression tests with config.full.json"
