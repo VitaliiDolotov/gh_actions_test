@@ -1,4 +1,4 @@
-name: Run Tests on STG
+name: Automation Stg
 
 on:
   workflow_dispatch:
