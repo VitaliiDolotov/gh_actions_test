@@ -1,4 +1,4 @@
-name: Automation Stg
+name: staging/full_regression/web
 
 on:
   workflow_dispatch:
