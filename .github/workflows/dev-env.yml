@@ -1,4 +1,4 @@
-name: test-001/full_regression/web
+name: Test-001 - Full_regression - Web
 
 on:
   workflow_dispatch:
