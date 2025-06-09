@@ -1,4 +1,4 @@
-name: staging/full_regression/web
+name: Staging - Full_regression - Web
 
 on:
   workflow_dispatch:
