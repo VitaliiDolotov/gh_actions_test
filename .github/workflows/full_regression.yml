@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: staging/full_regression/full regression
+name: Staging Full Regression
 
 # Controls when the workflow will run
 on:
